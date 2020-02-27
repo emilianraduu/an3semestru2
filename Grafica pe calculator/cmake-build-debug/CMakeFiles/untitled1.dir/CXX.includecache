@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/emilianradu/CLionProjects/untitled1/main.cpp
+cstdlib
+-
+cstdio
+-
+OpenGL/gl.h
+-
+OpenGL/glext.h
+-
+GLUT/glut.h
+-
+
