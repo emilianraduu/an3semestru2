@@ -1,4 +1,4 @@
-# Install script for directory: /Users/emilianradu/CLionProjects/untitled1
+# Install script for directory: /Users/emilianradu/Documents/an3semestru2/Grafica pe calculator
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/emilianradu/CLionProjects/untitled1/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/emilianradu/Documents/an3semestru2/Grafica pe calculator/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

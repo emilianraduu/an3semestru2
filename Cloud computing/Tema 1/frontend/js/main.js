@@ -20,7 +20,11 @@ createSearch = (header, content) => {
     const searchButton = document.createElement('button');
     searchButton.innerText = '🕵🏻‍♂️';
     searchButton.className = 'searchButton';
-    searchButton.addEventListener('click', () => callAPI(search.value, content));
+    searchButton.addEventListener('click', () => {
+        // for (let i = 0; i < 500; i++) {
+            callAPI(search.value, content)
+        // }
+    });
     header.appendChild(search);
     header.appendChild(searchButton);
 };
