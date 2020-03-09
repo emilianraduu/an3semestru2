@@ -6,8 +6,8 @@
 // cele din GLUT cu glut.
 #include <cstdlib>
 #include <cstdio>
-#include <OpenGL/gl.h>
-#include <OpenGL/glext.h>
+#include <OpenGL/OpenGL.h>
+#include <OpenGL/OpenGL.h>
 #include <GLUT/glut.h>
 
 unsigned char prevKey;
@@ -85,9 +85,9 @@ void Display6() {
     glVertex2f(1, 1);
     glVertex2f(1, 0.8);
     glVertex2f(0.8, 0.8);
-    glEnd();
+//    glEnd();
 
-    glBegin(GL_TRIANGLES);
+//    glBegin(GL_TRIANGLES);
     glVertex2f(-1, -1);
     glVertex2f(-1, -0.8);
     glVertex2f(-0.8, -0.8);

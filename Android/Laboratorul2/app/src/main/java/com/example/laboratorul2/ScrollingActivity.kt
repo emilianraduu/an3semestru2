@@ -1,16 +1,13 @@
 package com.example.laboratorul2
 
 import android.app.AlertDialog
-import android.graphics.Color
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
+import android.os.PersistableBundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_scrolling.*
@@ -18,12 +15,15 @@ import kotlinx.android.synthetic.main.content_scrolling.*
 
 
 class ScrollingActivity : AppCompatActivity() {
+    var Array = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        Toast.makeText(applicationContext, "START", Toast.LENGTH_SHORT).show()
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scrolling)
         setSupportActionBar(toolbar)
-        val Array = ArrayList<View>()
 
         fab.setOnClickListener { view ->
             val builder = AlertDialog.Builder(this)
@@ -44,12 +44,14 @@ class ScrollingActivity : AppCompatActivity() {
 
                 }
 
-                Array.add(item)
+                Array.add(item.text.toString())
+                Log.d("array update", Array.toString())
                 updateData(Array)
             }
 
             builder.setNeutralButton("Cancel") { _, _ ->
-                Toast.makeText(applicationContext, "You cancelled the dialog.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "You cancelled the dialog.", Toast.LENGTH_SHORT)
+                    .show()
             }
 
             val dialog: AlertDialog = builder.create()
@@ -61,11 +63,50 @@ class ScrollingActivity : AppCompatActivity() {
         empty.text = "Your list is empty, please add an item"
         items.addView(empty)
 
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Toast.makeText(applicationContext, "RESUME", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Toast.makeText(applicationContext, "PAUSE", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Toast.makeText(applicationContext, "STOP", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Toast.makeText(applicationContext, "DESTROY", Toast.LENGTH_SHORT).show()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_scrolling, menu)
         return true
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        Log.d("array save", Array.toString())
+        outState.putStringArrayList("array", Array)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        val arraylist = savedInstanceState.getStringArrayList("array")
+        Log.d("array get", arraylist.toString())
+        if (arraylist != null) {
+            for (i in arraylist) {
+                Array.add(i)
+            }
+            updateData(Array)
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -75,10 +116,18 @@ class ScrollingActivity : AppCompatActivity() {
         }
     }
 
-    fun updateData(Array: ArrayList<View>) {
+
+    fun updateData(Array: ArrayList<String>) {
         items.removeAllViews()
         for (i in Array) {
-            items.addView(i)
+            val item = TextView(this)
+            item.textSize = 20f
+            item.text = i
+            item.isClickable = true
+            item.setOnClickListener { _ ->
+                Toast.makeText(applicationContext, item.text, Toast.LENGTH_SHORT).show()
+            }
+            items.addView(item)
         }
     }
 }
