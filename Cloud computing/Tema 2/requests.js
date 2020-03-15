@@ -106,7 +106,7 @@ const makePut = ({ req, res, route }) => {
                         } else {
                             console.log(`Added ${route[0]}`)
                             res.writeHead(201)
-                            res.write(JSON.stringify({ message: `Added ${route[0]}` }));
+                            res.write(JSON.stringify({ message: `Updated ${route[0]}` }));
                             res.end()
                         }
                     });
@@ -201,7 +201,7 @@ const getItem = ({ req, res, route, feedback = true, callback = () => { } }) => 
                 if (data.Items[0]) {
                     if (feedback) {
                         res.writeHead(200)
-                        res.write(JSON.stringify(item));
+                        res.write(JSON.stringify(data.Items[0]));
                         res.end()
                     }
                     else {
