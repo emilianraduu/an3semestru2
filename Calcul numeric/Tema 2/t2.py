@@ -1,7 +1,4 @@
 import numpy
-import math
-import copy
-import pygame
 
 def suma1(l, u, p, i):
     sum = 0
