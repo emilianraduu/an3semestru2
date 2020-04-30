@@ -1,0 +1,54 @@
+{
+  "name": "Cloudly",
+  "homepage": "https://localhost",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@azure/abort-controller": "^1.0.1",
+    "@azure/identity": "^1.0.3",
+    "@azure/storage-file-share": "^12.1.1",
+    "axios": "^0.19.0",
+    "glamor": "^2.20.40",
+    "lodash": "^4.17.14",
+    "masonry-layout": "^4.2.2",
+    "moment-timezone": "^0.5.27",
+    "react": "^16.8.6",
+    "react-device-detect": "^1.6.2",
+    "react-dom": "^16.8.6",
+    "react-dropzone": "^10.2.1",
+    "react-google-login": "^5.1.10",
+    "react-masonry": "^0.1.6",
+    "react-masonry-component": "^6.2.1",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.0.1",
+    "react-select": "^3.0.8",
+    "react-switch": "^5.0.1",
+    "react-toastify": "^5.3.2",
+    "styled-components": "^4.3.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@azure/storage-blob": "^12.1.1",
+    "node-sass": "^4.12.0"
+  }
+}
