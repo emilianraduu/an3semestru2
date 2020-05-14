@@ -1,0 +1,10 @@
+- o aplicatie java card si o aplicatie terminal
+- smart card-ul are o lista de metode de verificare a cardholderului - curs EMV2
+- pentru tranzactii cu valoare mai mica de 50 - nicio metoda de verificare
+- valoare mai mare de 50 - verificare a PIN-ului in plaintext
+- proceseaza o comanda prin care se returneaza metodele la terminal - getCardHolderMethods()
+- aplicatia terminal - java - comunica cu cardul
+- o lista de CVM cu coduri si aplicarea codurilor
+- un posibil cod: un cod pentru un byte pentru specificarea ca am tranzactii mai mari de 50
+- un alt cod: se reprezinta conditia de verificare a pinului in plaintext
+- comunicare dintre terminal si java card se realizeaza prin apduio
