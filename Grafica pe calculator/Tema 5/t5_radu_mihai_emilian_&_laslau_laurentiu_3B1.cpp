@@ -7,9 +7,9 @@
 #include <float.h>
 #include <iostream>
 #include <vector>
+#include <GLUT/glut.h>
 
 using namespace std;
-#include "GLUT/glut.h"
 //http://www.oftenpaper.net/sierpinski.htm
 // dimensiunea ferestrei in pixeli
 #define dim 300
@@ -280,33 +280,8 @@ public:
 				}
 				else if (r != 0)
 				{
-
-
-					double N = 256.0; // colors per element
-					double N3 = N * N * N;
-					// map n on the 0..1 interval (real numbers)
-					double t = (double)iterations / (double)12;
-					// expand n on the 0 .. 256^3 interval (integers)
-					iterations = (t * (double)N3);
-
-					double b = (double)(iterations / (N * N)) / 255.0f;
-					int nn = iterations - b * N * N;
-					double rr = (double)(nn / N) / 255.0f;
-					double g = (double)(nn - rr * N) / 255.0f;
-
-					//glColor3f(rr,g,b);
-					//glColor3f(Rs[r - 1] / 255.0, Gs[r - 1] / 255.0, Bs[r - 1] / 255.0);
-					glColor3f(Rs[10 - (r - 1)] / 255.0, Gs[10 - (r - 1)] / 255.0, Bs[10 - (r - 1)] / 255.0);
-
+					glColor3f(Rs[10 - r] / 255.0, Gs[10 - r] / 255.0, Bs[10 - r] / 255.0);
 					glVertex3d(x, y, 0);
-
-					if (std::find(rs.begin(), rs.end(), r) == rs.end())
-					{
-						/*cout << "r " << rr << " " << g << " " << b << '\n';
-						cout << double(51.0 / 255.0) << '\n';*/
-						rs.push_back(r);
-					}
-
 				}
 			}
 		fprintf(stdout, "STOP\n");
@@ -760,7 +735,7 @@ public:
 			glEnd();
 		}
 
-		if (level == 0 || level == 1)
+		if (level < 2)
 		{
 			/*glBegin(GL_POLYGON);
 			glRectf(a.x, a.y, c.x, c.y);
@@ -961,7 +936,6 @@ void DisplayW() {
 }
 // multimea Mandelbrot
 void DisplayE() {
-	//CComplex c(-0.012, 0.74);
 	CComplex c(-0.12375, 0.056805);
 	CMandelbrot cm(c);
 

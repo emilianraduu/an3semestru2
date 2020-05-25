@@ -13,175 +13,68 @@ using namespace std;
 #define max 0.9
 
 
-class Pixel
-{
-public:
-	int i;
-	int j;
-
-	Pixel()
-	{
-		i = 0;
-		j = 0;
-	}
-
-	Pixel(int x, int y)
-	{
-		i = x;
-		j = y;
-	}
-};
-
 class GrilaCarteziana
 {
 private:
-	//nr de linii
 	int n;
-	//nr de coloane
-	int m;
-	int size = 15;
-
-	std::vector<Pixel> pixels = {};
 
 public: 
 	GrilaCarteziana()
 	{
 		n = 0;
-		m = 0;
 	}
 
-	GrilaCarteziana(int nr_linii, int nr_coloane)
+	GrilaCarteziana(int marime)
 	{
-		n = nr_linii;
-		m = nr_coloane;
+		n = marime;
 	}
 
-	void AddPixel(Pixel pixel) 
-	{
-		pixels.push_back(pixel);
-	}
-
-	std::vector<Pixel> GetPixels() 
-	{
-		return pixels;
-	}
 
 	void DrawGrid()
 	{
 		glColor3f(0.3, 0.3, 0.3); // gri
 		glBegin(GL_LINES);
 
-		float range = max - min;
+		float cellSize = (max - min) / n;
 
-		for (int i = 0; i < size - 1; i++)
-			for (int j = 0; j < size - 1; j++)
-			{
-				float std = float(float(i - 0) / float(size - 0));
-				float x1 = std * range + min;
-
-				std = float(float(j - 0) / float(size - 0));
-				float y1 = std * range + min;
-
-				std = float(float(i + 1 - 0) / float(size - 0));
-				float x2 = std * range + min;
-
-				std = float(float(j + 1 - 0) / float(size - 0));
-				float y2 = std * range + min;
-
-				glVertex2d(-x1, y1);
-				glVertex2d(x1, y1);
-				glVertex2d(-x1, y1);
-				glVertex2d(-x1, -y1);
-
-				glVertex2d(x1, y1);
-				glVertex2d(x1, -y1);
-				glVertex2d(-x1, -y1);
-				glVertex2d(x1, -y1);
-			}
+		for (int i = 0; i <= n; i++) {
+			glVertex2d(min + cellSize * i, min);
+			glVertex2d(min + cellSize * i, max);
+		}
+		for (int i = 0; i <= n; i++) {
+			glVertex2d(min, min + cellSize * i);
+			glVertex2d(max, min + cellSize * i);
+		}
 
 		glEnd();
 	}
 
-	int GetSize()
-	{
-		return size;
-	}
-
-	void AfisareSegmentDreapta3Grup1(int x0, int y0, int xn, int yn, std::vector<Pixel> M)
-	{
-		int minV = 32000;
-		int maxV = 0;
-
-		// valoarea initiala a variabile de decizie
-		// dx, dy sunt constante - a se vedea mai sus
-		int dx = xn - x0;
-		int dy = yn - y0;
-
-		int d = 2 * dy - dx;
-		int dE = 2 * dy;
-		int dNE = 2 * (dy - dx);
-		float x = x0, y = y0;
-
-		Pixel pixel = Pixel(x, y);
-
-		M.empty();
-		M.push_back(pixel);
-
-		while (x < xn)
-		{
-			cout << "while d: " << d << " x: " << x << " y: " << y << endl;
-			if (d <= 0)
-			{
-				/* alegem E */
-				d += dE;
-				x++;
-			}
-			else
-			{
-				/* alegem NE */
-				d += dNE;
-				x++;
-				y++;
-			}
-
-			pixel = Pixel(x, y);
-			M.push_back(pixel);
-
-			if (minV > x)
-				minV = x;
-			else if (minV > y)
-				minV = y;
-
-			if (maxV < x)
-				maxV = x;
-			else if (maxV < y)
-				maxV = y;
-		}
-
-		minV--;
-		maxV = size;
-
+	void writePixel(int row, int col, float cellSize) {
 		float range = max - min;
-
+		float x = min + col * cellSize;
+		float y = max - row * cellSize;
+		if (x >= min && x <= max && y>= min && y <= max) {
+			glVertex2f(x, y);
+		}
+	}
+	void AfisareSegmentDreapta3Grup1(float x0, float y0, int xn, int yn)
+	{
+		float range = max - min;
+		float cellSize = range / n;
+		float xf = x0 + xn * cellSize;
+		float yf = y0 + yn * cellSize;
+		
 		//desenam linia rosie
-
 		glLineWidth(3);
 		glBegin(GL_LINES);
 		glColor3f(1, 0.1, 0.1); // rosu
-
-		glVertex2f(min, min);
-
-		float std = float(float(xn - minV) / float(maxV - minV));
-		float xf = std * range + min;
-		std = float(float(yn - minV) / float(maxV - minV));
-		float yf = std * range + min;
-
+		
+		glVertex2f(x0, y0);
 		glVertex2f(xf, yf);
 
 		glEnd();
 
 		//desenam punctele
-
 		glEnable(GL_POINT_SMOOTH);
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -189,147 +82,54 @@ public:
 		glColor3f(0.3, 0.3, 0.3); // gri
 		glBegin(GL_POINTS);
 
-
-		for (Pixel p : M)
-		{
-			float std = float(float(p.i - minV) / float(maxV - minV));
-			float x1 = std * range + min;
-
-			std = float(float(p.j - minV) / float(maxV - minV));
-			float y1 = std * range + min;
-
-			glVertex2f(x1, y1);
-
-			//cout << x1 << " " << y1 << '\n';
+		for (int i = 0; i <= xn; i += 2) {
+			writePixel(n - i/2, i, cellSize);
+			writePixel(n - i/2, i + 1, cellSize);
 		}
 
 		glEnd();
 	}
 
 
-	void AfisareSegmentDreapta3Grup2(int x0, int y0, int xn, int yn, std::vector<Pixel> M)
+	void AfisareSegmentDreapta3Grup2(float x0, float y0, int xn, int yn)
 	{
-		int minV = 32000;
-		int maxV = 0;
-		std::vector<Pixel> mainPixels = {};
-		// valoarea initiala a variabile de decizie
-		// dx, dy sunt constante - a se vedea mai sus
-		int dx = xn - x0;
-		int dy = yn - y0;
-
-		int d = 2 * dy - dx;
-		int dE = 2 * dy;
-		int dNE = 2 * (dy - dx);
-		float x = x0, y = y0;
-
-		Pixel pixel = Pixel(x, y);
-
-		M.empty();
-		mainPixels.empty();
-
-		M.push_back(pixel);
-		//cout << M.at(0).i << " " << M.at(0).j << '\n';
-
-		while (x < xn * 3)
-		{
-			if (d <= 0)
-			{
-				/* alegem E */
-				d += dE;
-				x++;
-			}
-			else
-			{
-				/* alegem NE */
-				d += dNE;
-				x++;
-				y--;
-			}
-
-			pixel = Pixel(x, y);
-			//cout << "while d: " << d << " x: " << x << " y: " << y << endl;
-			M.push_back(pixel);
-
-			if (minV > x)
-				minV = x;
-			else if (minV > y)
-				minV = y;
-
-			if (maxV < x)
-				maxV = x;
-			else if (maxV < y)
-				maxV = y;
-		}
-
-		minV--;
-		maxV = size;
-
 		float range = max - min;
+		float cellSize = range / n;
+		float xf = x0 + xn * cellSize;
+		float yf = y0 - yn * cellSize;
 
-		int contor = -1;
-		for (int i = 0; i < M.size(); i += 3)
-		{
-			//desenam punctele
+		//desenam linia rosie
+		glLineWidth(3);
+		glBegin(GL_LINES);
+		glColor3f(1, 0.1, 0.1); // rosu
 
-			glEnable(GL_POINT_SMOOTH);
-			glEnable(GL_BLEND);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glVertex2f(x0, y0);
+		glVertex2f(xf, yf);
 
-			glColor3f(0.3, 0.3, 0.3); // gri
-			glBegin(GL_POINTS);
+		glEnd();
 
-			Pixel p = M.at(i);
-			contor++;
-			p.i -= 4; //translatare pe axa x
-			p.j -= contor;
-			mainPixels.push_back(p);
+		//desenam punctele
+		glEnable(GL_POINT_SMOOTH);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-			float stdy = float(float((p.j) - minV) / float(maxV - minV));
-			float y = stdy * range + min;
+		glColor3f(0.3, 0.3, 0.3); // gri
+		glBegin(GL_POINTS);
 
-			for (int ii = 0; ii <= 8; ii++)
-			{
-				float stdx = float(float(p.i + ii - minV) / float(maxV - minV));
-				float x = stdx * range + min;
+		for (int i = 0; i <= xn; i += 3) {
+			writePixel(i / 3, i, cellSize);
+			writePixel(i / 3, i - 1, cellSize);
+			writePixel(i / 3, i + 1, cellSize);
 
-				if (x >= -1 && x <= 1)
-					glVertex2f(x, y);
-			}
+			writePixel(i / 3 - 1, i, cellSize);
+			writePixel(i / 3 - 1, i - 1, cellSize);
+			writePixel(i / 3 - 1, i + 1, cellSize);
 
-
-			glEnd();
-
-			glLineWidth(3);
-			glColor3f(1, 0.1, 0.1); // rosu
-			glBegin(GL_LINES);
-
-			for (int ii = 1; ii < mainPixels.size() - 1; ii++)
-			{
-				cout << mainPixels.at(ii).i << " " << mainPixels.at(ii).j << endl;
-				//desenam linia rosie
-
-				float stdx = float(float(mainPixels.at(ii).i + 1 - minV) / float(maxV - minV));
-				float stdy = float(float(mainPixels.at(ii).j + 1 - minV) / float(maxV - minV));
-
-				float x = stdx * range + min;
-				float y = stdy * range + min;
-
-
-				if (x <= 1)
-					glVertex2f(x, y);
-
-				stdx = float(float(mainPixels.at(ii + 1).i + 1 - minV) / float(maxV - minV));
-				stdy = float(float(mainPixels.at(ii + 1).j + 1 - minV) / float(maxV - minV));
-
-				x = stdx * range + min;
-				y = stdy * range + min;
-
-				if (x <= 1)
-					glVertex2f(x, y);
-			}
-
-			glEnd();
+			writePixel(i / 3 + 1, i, cellSize);
+			writePixel(i / 3 + 1, i - 1, cellSize);
+			writePixel(i / 3 + 1, i + 1, cellSize);
 		}
+		glEnd();
 
 	}
 };
@@ -351,12 +151,12 @@ void Display(void)
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	
-	GrilaCarteziana gc = GrilaCarteziana(15, 15);
+	GrilaCarteziana gc = GrilaCarteziana(15);
 	gc.DrawGrid();
-	gc.AfisareSegmentDreapta3Grup1(-0.9, -0.9, 15, 7, std::vector<Pixel>());
+	gc.AfisareSegmentDreapta3Grup1(min, min, 15, 7);
 
 	glLineWidth(1);
-	gc.AfisareSegmentDreapta3Grup2(0, 15, 11, 5, std::vector<Pixel>());
+	gc.AfisareSegmentDreapta3Grup2(min, max, 15, 5);
 	glFlush();
 }
 
