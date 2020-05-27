@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "cleanly",
+    "slug": "cleanly",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.cleanly",
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "Super12 requires access to your gallery in order to upload pictures for your profile",
+        "NSCameraUsageDescription": "Super12 requires access to your camera in order to take pictures for your profile",
+        "NSLocationAlwaysUsageDescription": "Super12 requires access to your camera in order to send notifications"
+      }
+    },
+    "android": {
+      "package": "com.cleanly"
+    },
+    "entryPoint": "node_modules/expo/AppEntry.js"
+  }
+}
