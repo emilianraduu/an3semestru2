@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_area"
+            android:title="@string/menu_area" />
+        <item
+            android:id="@+id/nav_currency"
+            android:title="@string/menu_currency" />
+        <item
+            android:id="@+id/nav_cooking"
+            android:title="@string/menu_cooking" />
+        <item
+            android:id="@+id/nav_storage"
+            android:title="@string/menu_storage" />
+        <item
+            android:id="@+id/nav_distance"
+            android:title="@string/menu_distance" />
+        <item
+            android:id="@+id/nav_energy"
+            android:title="@string/menu_energy" />
+        <item
+            android:id="@+id/nav_mass"
+            android:title="@string/menu_mass" />
+        <item
+            android:id="@+id/nav_power"
+            android:title="@string/menu_power" />
+        <item
+            android:id="@+id/nav_speed"
+            android:title="@string/menu_speed" />
+        <item
+            android:id="@+id/nav_temperature"
+            android:title="@string/menu_temperature" />
+        <item
+            android:id="@+id/nav_time"
+            android:title="@string/menu_time" />
+    </group>
+
+</menu>

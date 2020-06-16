@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_area">
+
+    <fragment
+        android:id="@+id/nav_area"
+        android:name="com.example.megaconvertor.ui.area.AreaFragment"
+        android:label="@string/menu_area" />
+    <fragment
+
+        android:id="@+id/nav_currency"
+        android:name="com.example.megaconvertor.ui.currency.CurrencyFragment"
+        android:label="@string/menu_currency"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/nav_cooking"
+        android:name="com.example.megaconvertor.ui.cooking.CookingFragment"
+        android:label="@string/menu_cooking" />
+    <fragment
+        android:id="@+id/nav_storage"
+        android:name="com.example.megaconvertor.ui.storage.StorageFragment"
+        android:label="@string/menu_storage" />
+    <fragment
+        android:id="@+id/nav_distance"
+        android:name="com.example.megaconvertor.ui.distance.DistanceFragment"
+        android:label="@string/menu_distance" />
+    <fragment
+        android:id="@+id/nav_energy"
+        android:name="com.example.megaconvertor.ui.energy.EnergyFragment"
+        android:label="@string/menu_energy" />
+    <fragment
+        android:id="@+id/nav_mass"
+        android:name="com.example.megaconvertor.ui.mass.MassFragment"
+        android:label="@string/menu_mass" />
+
+    <fragment
+        android:id="@+id/nav_power"
+        android:name="com.example.megaconvertor.ui.power.PowerFragment"
+        android:label="@string/menu_power" />
+    <fragment
+        android:id="@+id/nav_speed"
+        android:name="com.example.megaconvertor.ui.speed.SpeedFragment"
+        android:label="@string/menu_speed" />
+    <fragment
+        android:id="@+id/nav_temperature"
+        android:name="com.example.megaconvertor.ui.temperature.TemperatureFragment"
+        android:label="@string/menu_temperature" />
+    <fragment
+        android:id="@+id/nav_time"
+        android:name="com.example.megaconvertor.ui.time.TimeFragment"
+        android:label="@string/menu_time" />
+</navigation>

@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+
+            <!--        <com.google.android.material.tabs.TabLayout-->
+            <!--            android:id="@+id/tabs"-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:background="?attr/colorPrimary" />-->
+            <!--    </com.google.android.material.appbar.AppBarLayout>-->
+
+            <!--    <androidx.viewpager.widget.ViewPager-->
+            <!--        android:id="@+id/view_pager"-->
+            <!--        android:layout_width="match_parent"-->
+            <!--        android:layout_height="match_parent"-->
+            <!--        app:layout_behavior="@string/appbar_scrolling_view_behavior" />-->
+
+            <!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+            <!--        android:id="@+id/fab"-->
+            <!--        android:layout_width="wrap_content"-->
+            <!--        android:layout_height="wrap_content"-->
+            <!--        android:layout_gravity="bottom|end"-->
+            <!--        android:backgroundTint="@color/colorPrimary"-->
+            <!--        android:layout_margin="@dimen/fab_margin"-->
+            <!--        app:srcCompat="@android:drawable/ic_menu_recent_history" />-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorGrey"
+            android:orientation="vertical"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1.4"
+                android:gravity="start">
+
+                <TextView
+                    android:id="@+id/input"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".5"
+                    android:background="@color/colorWhite"
+                    android:gravity="bottom|end"
+                    android:padding="5dp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="30dp" />
+
+                <TextView
+                    android:id="@+id/result"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".5"
+                    android:background="@color/colorPrimaryDark"
+                    android:gravity="bottom"
+                    android:padding="5dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="30dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.6"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:gravity="start">
+
+                    <Spinner
+                        android:id="@+id/val1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:overlapAnchor="false" />
+
+                    <Spinner
+                        android:id="@+id/val2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:overlapAnchor="false" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:weightSum="1">
+
+                    <Button
+                        android:id="@+id/bdel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:backgroundTint="@color/colorRed"
+                        android:text="del"
+                        android:textColor="@color/colorWhite" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:id="@+id/b7"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".33"
+                        android:backgroundTint="@color/colorAccent"
+                        android:text="7" />
+
+                    <Button
+                        android:id="@+id/b8"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".33"
+                        android:backgroundTint="@color/colorAccent"
+                        android:text="8" />
+
+                    <Button
+                        android:id="@+id/b9"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".33"
+                        android:backgroundTint="@color/colorAccent"
+                        android:text="9" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:id="@+id/b4"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".33"
+                        android:backgroundTint="@color/colorAccent"
+                        android:text="4" />
+
+                    <Button
+                        android:id="@+id/b5"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".33"
+                        android:backgroundTint="@color/colorAccent"
+                        android:text="5" />
+
+                    <Button
+                        android:id="@+id/b6"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".33"
+                        android:backgroundTint="@color/colorAccent"
+                        android:text="6" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:id="@+id/b1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".33"
+                        android:backgroundTint="@color/colorAccent"
+                        android:text="1" />
+
+                    <Button
+                        android:id="@+id/b2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".33"
+                        android:backgroundTint="@color/colorAccent"
+                        android:text="2" />
+
+                    <Button
+                        android:id="@+id/b3"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".33"
+                        android:backgroundTint="@color/colorAccent"
+                        android:text="3" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/colorAccent">
+
+                    <Button
+                        android:id="@+id/b0"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".66"
+                        android:backgroundTint="@color/colorAccent"
+                        android:text="0" />
+
+                    <Button
+                        android:id="@+id/bpoint"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".33"
+                        android:backgroundTint="@color/colorRed"
+                        android:text="."
+                        android:textColor="@color/colorWhite" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
