@@ -14,7 +14,7 @@
     "@react-navigation/drawer": "^5.8.0",
     "@react-navigation/native": "^5.4.3",
     "@react-navigation/stack": "^5.4.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "base64-arraybuffer": "^0.2.0",
     "expo": "~37.0.3",
     "expo-camera": "^8.2.0",
