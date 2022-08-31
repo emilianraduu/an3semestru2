@@ -11,7 +11,7 @@
     "glamor": "^2.20.40",
     "lodash": "^4.17.14",
     "masonry-layout": "^4.2.2",
-    "moment-timezone": "^0.5.27",
+    "moment-timezone": "^0.5.35",
     "react": "^16.8.6",
     "react-device-detect": "^1.6.2",
     "react-dom": "^16.8.6",
